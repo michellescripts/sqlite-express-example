@@ -1,10 +1,13 @@
 let express = require('express')
 let app = express()
 let router = express.Router()
-let sqlite3 = require('sqlite3').verbose()
-let knex = require('./db/connection')
+// let sqlite3 = require('sqlite3').verbose()
 
-let routes = require('./routes/theme')
+var environment = 'development'
+var config = require('../knexfile')[environment]
+let knex = require('knex')(config)
+
+// let routes = require('./routes/theme')
 
 router.get('/', function (req, res, next) {
   knex('sorbetFlavors').select()
