@@ -1,15 +1,12 @@
 let express = require('express')
 let app = express()
-let router = express.Router()
-// let sqlite3 = require('sqlite3').verbose()
 
 var environment = 'development'
 var config = require('./knexfile')[environment]
 let knex = require('knex')(config)
 
-// let routes = require('./routes/theme')
-
-router.get('/', function (req, res, next) {
+app.get('/', function (req, res, next) {
+  console.log('get is hits')
   knex('sorbetFlavors').select()
   // db.cartoons.get()
   .then(function (sorbets) {
